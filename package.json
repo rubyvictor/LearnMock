@@ -1,0 +1,12 @@
+{
+  "name": "learnMock",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^22.4.3"
+  },
+  "scripts": {
+    "test": "jest --watch"
+  }
+}
