@@ -84,7 +84,7 @@ describe("User Controller should not make actual payment", () => {
       expect(user.addUser.calledOnce).toEqual(true);
     });
 
-    it("should send Hi Sinon when logged in", () => {
+    it.skip("should send Hi Sinon when logged in", () => {
       const sinon = require("sinon");
       const user_controller = require("./user_controller");
 
@@ -108,6 +108,32 @@ describe("User Controller should not make actual payment", () => {
 
       user_controller.getIndexPage(req, res);
       expect(isLoggedInStub.calledTwice).toEqual(true);
+    });
+
+    it("should send Hi Sinon when logged in, USING MOCK", () => {
+      const sinon = require("sinon");
+      const user_controller = require("./user_controller");
+
+      let user = { isLoggedIn: () => {} };
+
+      // stub isLoggedIn function and make it return true always
+      const isLoggedInStub = sinon.stub(user, "isLoggedIn").returns(true);
+      // pass user into req object
+      let req = { user: user };
+
+      let res = { send: () => {} };
+
+      const mock = sinon.mock(res);
+      // build how we expect it to work. i.e. fake the func
+      mock
+        .expects("send")
+        .once()
+        .withExactArgs("Hi Sinon");
+
+      user_controller.getIndexPage(req, res);
+      expect(isLoggedInStub.calledOnce).toEqual(true);
+
+      mock.verify();
     });
   });
 });
