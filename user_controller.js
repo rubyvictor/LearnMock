@@ -21,7 +21,15 @@ const creditCardPaymentDouble = () => {
   return paymentAmount;
 };
 
+const getIndexPage = (req, res) => {
+  if (req.user.isLoggedIn()) {
+    return res.send("Hi Sinon");
+  }
+  res.send("Oops, you need to log in to see this page");
+};
+
 module.exports = {
   emailDouble: emailDouble,
-  creditCardPaymentDouble: creditCardPaymentDouble
+  creditCardPaymentDouble: creditCardPaymentDouble,
+  getIndexPage: getIndexPage
 };
