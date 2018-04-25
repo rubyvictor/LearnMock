@@ -37,18 +37,18 @@ describe("User Controller should not make actual payment", () => {
       return { payNow: jest.fn(() => "pay $10") };
     });
     const user_controller = require("./user_controller");
-    const payment = user_controller.creditCardPaymentDouble();
+    const payment = user_controller.creditCardPaymentDouble(10);
 
     expect(payment).toEqual("Thanks. We just deducted $10 from your account.");
   });
 
-  it.skip("should return payment of $50", () => {
+  it("should return payment of $50", () => {
     jest.doMock("./CreditCardPaymentService.js", function() {
       return { payNow: jest.fn(() => "pay $50") };
     });
 
     var user_controller = require("./user_controller");
-    const payment = user_controller.creditCardPaymentDouble();
+    const payment = user_controller.creditCardPaymentDouble(50);
 
     expect(payment).toEqual("Thanks. We just deducted $50 from your account.");
   });

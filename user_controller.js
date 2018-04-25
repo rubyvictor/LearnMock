@@ -11,12 +11,12 @@ const emailDouble = () => {
   return value;
 };
 
-const creditCardPaymentDouble = () => {
-  const paymentAmount = creditCardPaymentService.payNow();
-  if (paymentAmount === "pay $10") {
-    return "Thanks. We just deducted $10 from your account.";
-  } else if (paymentAmount === "pay $50") {
-    return "Thanks. We just deducted $50 from your account.";
+const creditCardPaymentDouble = (amount) => {
+  const paymentAmount = creditCardPaymentService.payNow(amount);
+  if (paymentAmount === `pay $${amount}`) {
+    return `Thanks. We just deducted $${amount} from your account.`;
+  } else if (paymentAmount === `pay $${amount}`) {
+    return `Thanks. We just deducted $${amount} from your account.`;
   }
   return paymentAmount;
 };
